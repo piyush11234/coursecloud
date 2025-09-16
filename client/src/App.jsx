@@ -27,6 +27,7 @@ import Setting from './Pages/Setting'
 
 import ForgotPassword from './Pages/ForgotPassword'
 import VerifyOtp from './Pages/VerifyOtp'
+import ChangePassword from './Pages/ChangePassword'
 import PaymentCourse from './Pages/PaymentCourse'
 
 const router = createBrowserRouter([
