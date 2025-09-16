@@ -29,7 +29,7 @@ import ForgotPassword from './Pages/ForgotPassword'
 import VerifyOtp from './Pages/VerifyOtp'
 import PaymentCourse from './Pages/PaymentCourse'
 import ChangePassword from './Pages/ChangePassword'
-import PaymentCourse from './Pages/PaymentCourse'
+
 
 const router = createBrowserRouter([
   {
