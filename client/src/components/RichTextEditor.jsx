@@ -1,44 +1,41 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import "quill/dist/quill.snow.css";
 
 const RichTextEditor = ({ input, setInput }) => {
-  const [Quill, setQuill] = useState(null);
-  const [quillInstance, setQuillInstance] = useState(null);
-  const quillRef = useRef();
+  const quillRef = useRef(null);
+  const quillInstanceRef = useRef(null);
 
-  // Dynamically import react-quilljs
   useEffect(() => {
-    let isMounted = true;
-    import("react-quilljs").then((mod) => {
-      if (!isMounted) return;
-      setQuill(mod.useQuill);
-    });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+    if (typeof window === "undefined") return; // SSR-safe
 
-  // Initialize Quill editor once Quill is loaded
-  useEffect(() => {
-    if (Quill && quillRef.current && !quillInstance) {
-      const { quill } = Quill({ theme: "snow", ref: quillRef });
-      setQuillInstance(quill);
+    // Dynamically import Quill only in browser
+    import("quill").then((QuillModule) => {
+      const Quill = QuillModule.default;
 
-      // Update input state on text change
-      quill.on("text-change", () => {
-        setInput({ ...input, description: quill.root.innerHTML });
-      });
+      if (quillRef.current && !quillInstanceRef.current) {
+        const quill = new Quill(quillRef.current, {
+          theme: "snow",
+        });
+        quillInstanceRef.current = quill;
 
-      // Load existing description if any
-      if (input.description) {
-        quill.root.innerHTML = input.description;
+        // Initialize existing content
+        if (input.description) {
+          quill.root.innerHTML = input.description;
+        }
+
+        quill.on("text-change", () => {
+          setInput((prev) => ({
+            ...prev,
+            description: quill.root.innerHTML,
+          }));
+        });
       }
-    }
-  }, [Quill, quillRef, quillInstance, input, setInput]);
+    });
+  }, [input.description, setInput]);
 
   return (
     <div className="h-[300px]">
       <div ref={quillRef} />
-      {!Quill && <div>Loading editor...</div>}
     </div>
   );
 };
