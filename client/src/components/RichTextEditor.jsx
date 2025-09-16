@@ -1,30 +1,44 @@
-import React, { useEffect } from "react";
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
+import React, { useEffect, useState, useRef } from "react";
 
 const RichTextEditor = ({ input, setInput }) => {
-  const { quill, quillRef } = useQuill();
+  const [Quill, setQuill] = useState(null);
+  const [quillInstance, setQuillInstance] = useState(null);
+  const quillRef = useRef();
 
+  // Dynamically import react-quilljs
   useEffect(() => {
-    if (quill) {
+    let isMounted = true;
+    import("react-quilljs").then((mod) => {
+      if (!isMounted) return;
+      setQuill(mod.useQuill);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Initialize Quill editor once Quill is loaded
+  useEffect(() => {
+    if (Quill && quillRef.current && !quillInstance) {
+      const { quill } = Quill({ theme: "snow", ref: quillRef });
+      setQuillInstance(quill);
+
+      // Update input state on text change
       quill.on("text-change", () => {
-        // Save editor content into input state
-        setInput({
-          ...input,
-          description: quill.root.innerHTML, // 📝 store as HTML string
-        });
+        setInput({ ...input, description: quill.root.innerHTML });
       });
 
-      // Initialize with existing description if any
+      // Load existing description if any
       if (input.description) {
         quill.root.innerHTML = input.description;
       }
     }
-  }, [quill]);
+  }, [Quill, quillRef, quillInstance, input, setInput]);
 
   return (
     <div className="h-[300px]">
       <div ref={quillRef} />
+      {!Quill && <div>Loading editor...</div>}
     </div>
   );
 };
