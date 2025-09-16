@@ -28,7 +28,7 @@ const CourseTab = () => {
 
     const getCourseById = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/api/v1/course/${id}`, { withCredentials: true })
+            const res = await axios.get(`https://coursecloud.onrender.com/api/v1/course/${id}`, { withCredentials: true })
             if (res.data.success) {
                 setSelectedCourse(res.data.course);
             }
@@ -113,7 +113,7 @@ const CourseTab = () => {
 
         try {
             setLoading(true);
-            const res = await axios.put(`http://localhost:3000/api/v1/course/${id}`, formData, {
+            const res = await axios.put(`https://coursecloud.onrender.com/api/v1/course/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },
@@ -136,7 +136,7 @@ const CourseTab = () => {
 
     const togglePublishUnpublish = async (action) => {
         try {
-            const res = await axios.patch(`http://localhost:3000/api/v1/course/${id}`,{}, {
+            const res = await axios.patch(`https://coursecloud.onrender.com/api/v1/course/${id}`,{}, {
                 params: {
                     action
                 },

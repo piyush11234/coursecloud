@@ -21,7 +21,7 @@ const CourseRating = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/v1/course/${courseId}/rate`,
+        `https://coursecloud.onrender.com/api/v1/course/${courseId}/rate`,
         { rating, review },
         { withCredentials: true }
       );

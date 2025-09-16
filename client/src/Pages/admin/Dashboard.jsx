@@ -7,7 +7,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/course/admin/all-courses", {
+        const res = await axios.get("https://coursecloud.onrender.com/api/v1/course/admin/all-courses", {
           withCredentials: true,
         });
         if (res.data.success) {

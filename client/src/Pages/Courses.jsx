@@ -12,7 +12,7 @@ const Courses = () => {
   useEffect(() => {
     const getAllPublishedCourses = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/v1/course/published-courses`, { withCredentials: true });
+        const res = await axios.get(`https://coursecloud.onrender.com/api/v1/course/published-courses`, { withCredentials: true });
         if (res.data.success) {
           dispatch(setCourse(res.data.courses))
         }

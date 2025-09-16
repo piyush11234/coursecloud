@@ -36,7 +36,7 @@ const ChangePassword = () => {
 
     try {
       setIsLoading(true)
-      const res = await axios.post(`http://localhost:3000/api/v1/user/change-password/${email}`, {
+      const res = await axios.post(`https://coursecloud.onrender.com/api/v1/user/change-password/${email}`, {
         newPassword,
         confirmPassword
       })

@@ -27,7 +27,7 @@ const Course = () => {
     const getCreatorCourse = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:3000/api/v1/course/`, {
+        const res = await axios.get(`https://coursecloud.onrender.com/api/v1/course/`, {
           withCredentials: true,
         });
         if (res.data.success) {

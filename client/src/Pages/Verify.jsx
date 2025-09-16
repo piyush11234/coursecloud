@@ -10,7 +10,7 @@ const Verify = () => {
     useEffect(() => {
         const VerifyEmail = async () => {
             try {
-                const res = await axios.post(`http://localhost:3000/api/v1/user/verify`, {}, {
+                const res = await axios.post(`https://coursecloud.onrender.com/api/v1/user/verify`, {}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

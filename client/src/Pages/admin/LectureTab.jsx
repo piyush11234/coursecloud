@@ -41,7 +41,7 @@ const LectureTab = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/media/upload-video",
+        "https://coursecloud.onrender.com/api/v1/media/upload-video",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -76,7 +76,7 @@ const LectureTab = () => {
     try {
       setLoading(true)
       const res = await axios.put(
-        `http://localhost:3000/api/v1/course/${courseId}/lecture/${lectureId}`,
+        `https://coursecloud.onrender.com/api/v1/course/${courseId}/lecture/${lectureId}`,
         data,
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       )
@@ -103,7 +103,7 @@ const LectureTab = () => {
     try {
       setRemoveLoading(true)
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/course/lecture/${lectureId}`,
+        `https://coursecloud.onrender.com/api/v1/course/lecture/${lectureId}`,
         { withCredentials: true }
       )
       if (res.data.success) {

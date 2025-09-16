@@ -30,7 +30,7 @@ const CourseDetails = () => {
     //         try {
     //             let courseData = course?.find(course => course._id === courseId)
     //             if (!courseData) {
-    //                 const res = await axios.get(`http://localhost:3000/api/v1/course/${courseId}`, { withCredentials: true })
+    //                 const res = await axios.get(`https://coursecloud.onrender.com/api/v1/course/${courseId}`, { withCredentials: true })
     //                 if (res.data.success) courseData = res.data.course
     //             }
     //             setSelectedCourse(courseData)
@@ -50,7 +50,7 @@ const CourseDetails = () => {
                 let courseData = course?.find(course => course._id === courseId)
                 if (!courseData) {
                     const res = await axios.get(
-                        `http://localhost:3000/api/v1/course/${courseId}`,
+                        `https://coursecloud.onrender.com/api/v1/course/${courseId}`,
                         { withCredentials: true }
                     )
                     if (res.data.success) courseData = res.data.course
@@ -58,7 +58,7 @@ const CourseDetails = () => {
 
                 // ✅ Add isEnrolled flag from backend
                 const enrolledRes = await axios.get(
-                    `http://localhost:3000/api/v1/course/${courseId}/check-enrollment`,
+                    `https://coursecloud.onrender.com/api/v1/course/${courseId}/check-enrollment`,
                     { withCredentials: true }
                 )
 
@@ -77,7 +77,7 @@ const CourseDetails = () => {
     useEffect(() => {
         const fetchLectures = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/course/${courseId}/lecture`, { withCredentials: true })
+                const res = await axios.get(`https://coursecloud.onrender.com/api/v1/course/${courseId}/lecture`, { withCredentials: true })
                 if (res.data.success) {
                     setCourseLecture(res.data.lectures || [])
                     setActiveLecture(res.data.lectures?.[0] || null) // First lecture as default

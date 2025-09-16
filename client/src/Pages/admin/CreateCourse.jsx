@@ -22,7 +22,7 @@ const CreateCourse = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post(`http://localhost:3000/api/v1/course/`, { courseTitle, category }, {
+            const res = await axios.post(`https://coursecloud.onrender.com/api/v1/course/`, { courseTitle, category }, {
                 headers: {
                     "Content-Type": "application/json"
                 },

@@ -21,7 +21,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/logout",
+        "https://coursecloud.onrender.com/api/v1/user/logout",
         {},
         {
           headers: {

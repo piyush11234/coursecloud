@@ -39,7 +39,7 @@ const VerifyOTP = () => {
 
     try {
       setIsLoading(true)
-      const res = await axios.post(`http://localhost:3000/api/v1/user/verify-otp/${email}`, {
+      const res = await axios.post(`https://coursecloud.onrender.com/api/v1/user/verify-otp/${email}`, {
         otp: finalOtp,
       })
       setSuccessMessage(res.data.message)

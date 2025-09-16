@@ -15,7 +15,7 @@ const PaymentCourse = () => {
     const fetchCourse = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/v1/course/${courseId}`,
+          `https://coursecloud.onrender.com/api/v1/course/${courseId}`,
           { withCredentials: true }
         );
         if (res.data.success) setCourse(res.data.course);
@@ -32,7 +32,7 @@ const PaymentCourse = () => {
   const handleEnroll = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/v1/course/${courseId}/enroll`,
+        `https://coursecloud.onrender.com/api/v1/course/${courseId}/enroll`,
         {},
         { withCredentials: true }
       );

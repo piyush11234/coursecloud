@@ -21,7 +21,7 @@ const CreateLecture = () => {
   const getLectures = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/v1/course/${params?.courseId}/lecture`,
+        `https://coursecloud.onrender.com/api/v1/course/${params?.courseId}/lecture`,
         { withCredentials: true }
       );
       console.log("Lecture API Response:", res.data); // Debug
@@ -39,7 +39,7 @@ const CreateLecture = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:3000/api/v1/course/${params?.courseId}/lecture`,
+        `https://coursecloud.onrender.com/api/v1/course/${params?.courseId}/lecture`,
         { lectureTitle },
         {
           headers: {

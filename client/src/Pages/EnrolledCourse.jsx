@@ -10,7 +10,7 @@ const EnrolledCourse = () => {
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/user/enrolled", {
+        const res = await axios.get("https://coursecloud.onrender.com/api/v1/user/enrolled", {
           withCredentials: true,
         });
         if (res.data.success) setEnrolledCourses(res.data.courses);
