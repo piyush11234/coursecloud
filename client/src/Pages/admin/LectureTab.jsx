@@ -193,7 +193,7 @@ const LectureTab = () => {
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>
-            <p className="text-sm text-gray-600 mt-1">{uploadProgress}% uploaded</p>
+            <p className="text-sm text-gray-600 mt-1">{uploadProgress-1}% uploading</p>
           </div>
         )}
 
