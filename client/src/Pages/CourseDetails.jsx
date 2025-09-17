@@ -6,6 +6,7 @@ import { ArrowLeft, Lock, PlayCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import userLogo from '../assets/user.jpg'
 
 const CourseDetails = () => {
     const navigate = useNavigate()
@@ -229,7 +230,7 @@ const CourseDetails = () => {
                         <h2 className='text-xl font-bold text-gray-800 mb-4 text-left'>Instructor</h2>
                         <div className='flex items-center space-x-4'>
                             <img
-                                src={selectedCourse?.creator?.photoUrl}
+                                src={selectedCourse?.creator?.photoUrl || userLogo}
                                 alt="instructor"
                                 className='w-16 h-16 rounded-full'
                             />

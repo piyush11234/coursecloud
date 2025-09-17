@@ -42,7 +42,7 @@ const Footer = () => {
         {/* Social Icons */}
         <div className="space-y-3">
           <h2 className="font-semibold text-lg">Follow Us</h2>
-          <div className="flex space-x-3 mt-2 md:ml-36 ml-36">
+          <div className="flex space-x-3 mt-2 md:ml-32 ml-32">
             <a href="https://www.facebook.com/piyush.shakya.7311" className="hover:text-blue-500">
               <Facebook size={20} />
             </a>
@@ -61,7 +61,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="border-t border-gray-700 mt-6 py-4 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} E-Learning. All rights reserved.
+        © {new Date().getFullYear()} CourseCloud. All rights reserved.
       </div>
     </footer>
   );
