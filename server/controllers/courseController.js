@@ -217,31 +217,62 @@ export const checkEnrollment = async (req, res) => {
 
 
 // Get all courses with enrolled student details
-export const getAllCoursesWithStudents = async (req, res) => {
-  try {
-    const courses = await Course.find()
-      .populate("enrolledStudents", "name email photoUrl") // only return needed fields
-      .exec();
+// export const getAllCoursesWithStudents = async (req, res) => {
+//   try {
+//     const courses = await Course.find()
+//       .populate("enrolledStudents", "name email photoUrl") // only return needed fields
+//       .exec();
 
-    if (!courses || courses.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "No courses found"
-      });
+//     if (!courses || courses.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "No courses found"
+//       });
+//     }
+
+//     return res.status(200).json({
+//       success: true,
+//       courses
+//     });
+//   } catch (err) {
+//     console.error("Error fetching courses with students:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to fetch courses"
+//     });
+//   }
+// };
+
+
+export const getInstructorCoursesWithStudents = async (req, res) => {
+    try {
+        const instructorId = req.userId; // ✅ coming from isAuthenticated middleware
+
+        const courses = await Course.find({ creator: instructorId })
+            .populate("enrolledStudents", "name email photoUrl") // only return needed fields
+
+
+        if (!courses || courses.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No courses found for this instructor",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            courses,
+        });
+    } catch (err) {
+        console.error("Error fetching instructor courses:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch courses",
+            error: err.message,
+        });
     }
-
-    return res.status(200).json({
-      success: true,
-      courses
-    });
-  } catch (err) {
-    console.error("Error fetching courses with students:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to fetch courses"
-    });
-  }
 };
+
 
 
 
