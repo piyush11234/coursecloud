@@ -244,7 +244,7 @@ export const checkEnrollment = async (req, res) => {
 // };
 
 
-export const getInstructorCoursesWithStudents = async (req, res) => {
+export const getAllCoursesWithStudents = async (req, res) => {
     try {
         const instructorId = req.userId; // ✅ coming from isAuthenticated middleware
 
